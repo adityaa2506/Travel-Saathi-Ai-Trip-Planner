@@ -1,0 +1,36 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+  const apiKey = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY;
+  const genAI = new GoogleGenerativeAI(apiKey);
+  
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash-8b",
+  });
+  
+  const generationConfig = {
+    temperature: 1,
+    topP: 0.95,
+    topK: 40,
+    maxOutputTokens: 8192,
+    responseMimeType: "application/json",
+  };
+  
+
+    export const chatSession = model.startChat({
+      generationConfig,
+      history: [
+        {
+          role: "user",
+          parts: [
+            {text: "Generate Travel Plan for Location : \"Las Vegas, NV, USA\" for 3 Days for 1 with a cheap budget, Give me a Hotels options list with HotelName,Hotel address,Price in inr, hotel image url,geo coordinates,rating,descriptions and suggest itinerary with placeName,Place Details,Place Image Url, Geo Coordinates,ticket Pricing  in inr,rating,Time travel each of the location for 3 days with each day plan with best time to visit in JSON format."},
+          ],
+        },
+        {
+          role: "model",
+          parts: [
+            {text: "```json\n{\n  \"trip_details\": {\n    \"destination\": \"Las Vegas, NV, USA\",\n    \"duration\": \"3 Days\",\n    \"traveler_count\": \"1\",\n    \"budget\": \"cheap\"\n  },\n  \"hotels\": [\n    {\n      \"hotelName\": \"Budget Inn\",\n      \"hotelAddress\": \"Various locations throughout Las Vegas; check for specific addresses based on your chosen location.\",\n      \"price_inr\": \"3000 - 5000 (approx. per night, based on availability and season)\",\n      \"hotelImageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Budget_Inn_sign.JPG/1200px-Budget_Inn_sign.JPG\",\n      \"geo_coordinates\": \"36.1000, -115.1889\",\n      \"rating\": \"4.0/5\",\n      \"description\": \"Clean and simple budget accommodations with basic amenities. Located generally away from the Strip, this might require a bit more travel time depending on the location of attractions you want to visit.\",\n\n        \n      \"features\": [\"Basic rooms\", \"Free Wi-Fi\", \"Limited on-site facilities\"]\n    },\n\t{\n      \"hotelName\": \"Staybridge Suites\",\n      \"hotelAddress\": \"Various locations throughout Las Vegas; check for specific addresses based on your chosen location.\",\n      \"price_inr\": \"6000-9000 (approx. per night, based on availability and season)\",\n      \"hotelImageUrl\": \"https://images.unsplash.com/photo-1628716075014-130c27c02650?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80\",\n      \"geo_coordinates\": \"36.1000, -115.1889\",\n      \"rating\": \"4.5/5\",\n      \"description\": \"Includes kitchenettes. Located slightly off the Strip, which can reduce hotel costs but might require more travel.\",\n      \"features\": [\"Kitchenettes\", \"Free Wi-Fi\", \"Some on-site facilities\"]\n    }\n  ],\n  \"itinerary\": [\n    {\n      \"day\": 1,\n      \"plan\": \"Explore the Fremont Street Experience.\",\n      \"places\": [\n        {\n          \"placeName\": \"Fremont Street Experience\",\n          \"placeDetails\": \"A vibrant pedestrian-only area with stunning light shows, shops, restaurants, and casinos.\",\n          \"placeImageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Fremont_Street_Experience_at_night.jpg/1280px-Fremont_Street_Experience_at_night.jpg\",\n          \"geo_coordinates\": \"36.1761, -115.1619\",\n          \"ticket_pricing_inr\": \"Free (except for some attractions)\",\n          \"rating\": \"4.8/5\",\n          \"time_travel\": \"3-4 hours\"\n        }\n      ],\n      \"best_time_to_visit\": \"Evening (for the light show)\"\n    },\n    {\n      \"day\": 2,\n      \"plan\": \"Experience the grandeur of the Strip.\",\n      \"places\": [\n        {\n          \"placeName\": \"The Strip\",\n          \"placeDetails\": \"Walk down the famous Las Vegas Strip. See the famous hotels and attractions like the Bellagio and Caesar's Palace.\",\n          \"placeImageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/The_Las_Vegas_Strip.jpg/1280px-The_Las_Vegas_Strip.jpg\",\n          \"geo_coordinates\": \"36.0993, -115.1795\",\n          \"ticket_pricing_inr\": \"Free (for walking, paid for attractions like shows or rides)\",\n          \"rating\": \"4.5/5\",\n          \"time_travel\": \"6-8 hours\"\n        }\n      ],\n      \"best_time_to_visit\": \"Afternoon (for better photo opportunities)\"\n    },\n    {\n      \"day\": 3,\n      \"plan\": \"Relax and enjoy the desert or do some shopping.\",\n      \"places\": [\n        {\n          \"placeName\": \"Red Rock Canyon National Conservation Area\",\n          \"placeDetails\": \"Drive through Red Rock Canyon, a stunning natural landscape. Plenty of scenic hiking options.\",\n          \"placeImageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Red_Rock_Canyon_National_Conservation_Area_from_the_west.jpg/1280px-Red_Rock_Canyon_National_Conservation_Area_from_the_west.jpg\",\n          \"geo_coordinates\": \"36.0829, -115.2577\",\n          \"ticket_pricing_inr\": \"1000 to 1500 per person (vehicle entry fee)\",\n          \"rating\": \"4.7/5\",\n          \"time_travel\": \"4-6 hours\"\n        }\n      ],\n      \"best_time_to_visit\": \"Morning or early afternoon (avoid the hottest part of the day)\"\n    }\n  ]\n}\n```\n\n\n**Important Considerations & Caveats:**\n\n* **Pricing:** Prices for hotels and attractions are *approximate* and fluctuate based on demand, seasonality, and availability.  Always double-check prices on booking sites (Booking.com, Expedia, etc.) for the most up-to-date information.  Convert currency to INR using a real-time converter.\n* **\"Cheap\" Budget:** This itinerary focuses on minimizing costs where possible. Expect to spend money on food and transportation.\n* **Transportation:** Las Vegas has a decent public transit system (buses), but taxis, ride-sharing services, or renting a car are often more convenient, especially for getting to attractions outside the Strip. Calculate transportation costs into your budget.\n* **Accommodation:**  \"Budget Inn\" style hotels are often located further from the Strip. Factor in travel time between your accommodation and main attractions.\n* **Image URLs:** The provided image URLs may not always be available, or the image may be different from the location.\n* **Geo Coordinates:** These are general coordinates for the general area.\n* **Reviews:** Always read reviews for hotels and attractions to ensure they meet your expectations.\n* **Flexibility:** Be prepared to adjust the itinerary based on your interests and what's available.  You may need to book shows or tours in advance, especially during peak season.\n\n\nThis JSON structure is a starting point.  You'll need to do further research and booking to finalize your trip plans. Remember to factor in travel time between locations and account for potential delays.  Have a great trip!\n"},
+          ],
+        },
+      ],
+    });
+  
