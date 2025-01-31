@@ -74,7 +74,7 @@ const EarthScene = () => {
             lineHeight: '1.5'
           }}>
             Your personal trip planner and travel curator, creating<br />
-            custom itineraries tailored to your interests and budget.
+            Custom itineraries tailored to your interests and budget.
           </p>
           <Link to={'/create-trip'}>
           <button style={{

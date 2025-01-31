@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import {
   AI_PROMPT,
   SelectBudgetOptions,
   SelectTravelList,
 } from "@/constants/options";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { toast } from "sonner";
 import { chatSession } from "@/service/AIModal";
 import { FcGoogle } from "react-icons/fc";
@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/Components/ui/dialog";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { db } from "@/service/firebaseConfig";
@@ -123,7 +123,7 @@ function CreateTrip() {
           </h2>
           <p className="mt-3 text-gray-500 text-xl">
             Just provide some basic information, and our trip planner will generate
-            a customized itinerary based on your preferences.
+            a Customized itinerary based on your preferences.
           </p>
           
           <div className="flex flex-col gap-8 mt-20">
