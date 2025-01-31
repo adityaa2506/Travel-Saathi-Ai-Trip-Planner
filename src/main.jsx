@@ -4,8 +4,8 @@ import './index.css';
 import App from './App.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CreateTrip from './create-trip';
-import Header from './Components/Custom/header';
-import { Toaster } from './Components/ui/sonner';
+import Header from './components/custom/header';
+import { Toaster } from './components/ui/sonner';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ViewTrip from './view-trip/[tripId]';
 import ErrorPage from './ErrorPage'; // Import the ErrorPage component

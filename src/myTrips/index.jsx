@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-key */
-import Header from "@/Components/Custom/Header";
+import Header from "@/components/custom/Header";
 import { db } from "@/service/firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TripCards from "./Components/CardItem";
+import TripCards from "./components/CardItem";
 
 const MyTrips = () => {
 
